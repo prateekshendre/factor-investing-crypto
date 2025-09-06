@@ -107,7 +107,7 @@ factor-investing-crypto/
 
 10. Export plots
 
-    ```bash
+   ```bash
    python scripts/export_plots.py --input outputs/results.pkl --out outputs/plots 
    ```
 
