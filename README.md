@@ -76,36 +76,55 @@ factor-investing-crypto/
 
 ---
 ## ⚡ How to Run Locally
-1. Clone repo  
+1. Clone repo
+   ```bash
    git clone https://github.com/your-username/factor-investing-crypto.git  
-   cd factor-investing-crypto  
+   cd factor-investing-crypto
+   '''
 
-2. Create virtual environment  
+3. Create virtual environment
+   ```bash
    python -m venv venv  
-   source venv/bin/activate   # on Windows: venv\Scripts\activate  
+   source venv/bin/activate   # on Windows: venv\Scripts\activate
+   '''
 
-3. Install dependencies  
-   pip install -r requirements.txt  
+4. Install dependencies
 
-4. Prepare data  
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+6. Prepare data
+   ```bash
    python src/ingestion.py --symbols configs/symbols.csv --out data/prices_equities.csv  
-   python src/ingestion.py --symbols configs/crypto_symbols.csv --out data/prices_crypto.csv  
+   python src/ingestion.py --symbols configs/crypto_symbols.csv --out data/prices_crypto.csv
+   ```
 
-5. Run backtest  
-   python scripts/run_backtest.py --config configs/backtest.yaml  
+8. Run backtest
+   ```bash
+   python scripts/run_backtest.py --config configs/backtest.yaml
+   ```
 
-6. Export plots  
-   python scripts/export_plots.py --input outputs/results.pkl --out outputs/plots  
+10. Export plots
 
-7. Launch dashboard (optional)  
-   streamlit run src/dashboard_app.py  
+    ```bash
+   python scripts/export_plots.py --input outputs/results.pkl --out outputs/plots 
+   ```
+
+12. Launch dashboard (optional)
+   ```bash
+   streamlit run src/dashboard_app.py
+   ```
 
 ---
 ## 📌 Example Command
+
+```bash
 Backtest Value + Size + Momentum from 2016 onward:  
    python src/backtest.py --start 2016-01-01 --end 2025-06-30 \  
      --factors value,size,momentum \  
-     --out outputs/results.pkl  
+     --out outputs/results.pkl
+```
 
 ---
 ## 🔮 Next Steps
