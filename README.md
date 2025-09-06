@@ -39,42 +39,42 @@ Build Value, Size, and Momentum factors, backtest them, and analyze diversificat
 
 ## 📁 Repository Layout
 
-factor-investing-crypto/
+finance-ml-risk/
 │
-├── data/ # Cleaned CSVs
-│ ├── prices_equities.csv
-│ └── prices_crypto.csv
+├── data/
+│ ├── examples/ # sample CSVs
+│ └── feature_store/ # engineered features
 │
-├── notebooks/ # Jupyter notebooks
-│ └── factor_construction.ipynb
+├── notebooks/
+│ └── eda_feature_engineering.ipynb
 │
-├── src/ # Core source code
-│ ├── ingestion.py
-│ ├── factors.py
-│ ├── backtest.py
-│ ├── portfolio.py
-│ ├── metrics.py
-│ └── dashboard_app.py
+├── src/
+│ ├── ingestion.py # raw to cleaned data
+│ ├── features.py # feature engineering
+│ ├── pipeline.py # preprocessing pipeline
+│ ├── train.py # training and persistence
+│ ├── evaluate.py # model validation
+│ ├── explainability.py # SHAP reports
+│ └── predict.py # inference
 │
-├── scripts/ # Utility scripts
-│ ├── run_backtest.py
-│ └── export_plots.py
+├── experiments/ # MLflow logs
+├── reports/
+│ ├── model_card_template.md
+│ └── validation_report_template.md
 │
-├── outputs/
-│ ├── plots/ # Saved visuals
-│ └── results/ # Backtest results
+├── scripts/
+│ ├── run_training.sh
+│ └── generate_report.py
 │
-├── tests/ # Unit tests
-│ ├── test_factors.py
-│ └── test_backtest.py
+├── tests/
+│ ├── test_pipeline.py
+│ └── test_features.py
 │
-├── README.md
 ├── requirements.txt
+├── Dockerfile
+├── README.md
 ├── LICENSE
 └── .gitignore
-
-yaml
-Copy code
 
 ---
 
@@ -132,8 +132,6 @@ streamlit run src/dashboard_app.py
 📌 Example Command
 Generate normalized factor performance:
 
-bash
-Copy code
 python src/backtest.py --start 2016-01-01 --end 2025-06-30 \
   --factors value,size,momentum \
   --out outputs/results.pkl
