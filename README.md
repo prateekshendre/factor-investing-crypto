@@ -1,94 +1,74 @@
 # 📈 Factor Investing with a Crypto Twist
-
 Apply **Fama–French style factor investing** to equities and crypto.  
-Build Value, Size, and Momentum factors in Python, run backtests, and generate clear performance reports and plots for portfolio analysis.
+Build Value, Size, and Momentum factors in Python, run backtests, and generate performance reports and plots for portfolio analysis.  
 
 ---
-
 ## 🚀 What This Project Does
-
 * **Constructs** Value, Size, Momentum, and custom factors from equity and crypto data  
-* **Cleans & aligns** daily price series to ensure consistent timestamps and returns  
-* **Backtests** long-only and long-short factor portfolios with optional transaction cost assumptions  
-* **Produces** cumulative return plots, factor correlation matrices, turnover and attribution tables  
-* **Exports** publication-ready PNGs and CSVs for reports and dashboards  
+* **Cleans & aligns** daily price series for consistent backtests  
+* **Backtests** long-only and long-short factor portfolios  
+* **Produces** cumulative return plots, factor correlation heatmaps, and attribution tables  
+* **Exports** publication-ready plots and CSV files  
 
 ---
-
 ## 📂 Data
-
 * **Sources:**  
-  * Equities – Yahoo Finance via `yfinance`  
-  * Crypto – Bitcoin (**BTC-USD**) and Ethereum (**ETH-USD**) via `yfinance` or exchange APIs  
+  * Equities – Yahoo Finance (`yfinance`)  
+  * Crypto – Bitcoin (**BTC-USD**) and Ethereum (**ETH-USD**)  
 * **Frequency:** Daily closes  
-* **Storage:** Cleaned CSVs saved under `data/` for reproducibility  
+* **Storage:** Cleaned CSVs are saved in `data/`  
 
 ---
-
 ## 🛠 Methods & Tools
-
-* **pandas** & **numpy** – data wrangling and factor construction  
-* **scikit-learn** – ranking, scaling, preprocessing  
-* **matplotlib** & **seaborn** – visualizations  
+* **pandas, numpy** – factor construction and wrangling  
+* **scikit-learn** – preprocessing and ranking  
+* **matplotlib, seaborn** – plots  
 * **backtrader** (or custom engine) – backtesting  
-* **streamlit** – optional dashboard for live signal viewing  
+* **streamlit** – optional dashboard  
 * **pytest** – testing  
 
 ---
-
 ## 📁 Repository Layout
-
-factor-investing-crypto/
-├── data/                       # Cleaned CSVs
-│   ├── prices_equities.csv
-│   └── prices_crypto.csv
-├── notebooks/                  # Jupyter notebooks
-│   └── factor_construction.ipynb
-├── src/                        # Core source code
-│   ├── ingestion.py            # data loading & cleaning
-│   ├── factors.py              # factor construction logic
-│   ├── backtest.py             # backtesting engine
-│   ├── portfolio.py            # portfolio weighting & rebalancing
-│   ├── metrics.py              # performance metrics & attribution
-│   └── dashboard_app.py        # optional Streamlit dashboard
-├── scripts/                    # Utility scripts
-│   ├── run_backtest.py
-│   └── export_plots.py
-├── outputs/                    # Model outputs
-│   ├── plots/                  # Saved PNG/SVG visuals
-│   │   ├── factor_cumulative_returns.png
-│   │   ├── factor_correlation_heatmap.png
-│   │   ├── rolling_alpha.png
-│   │   └── turnover_sensitivity.png
-│   └── results/                # Backtest results
-├── tests/                      # Unit tests
-│   ├── test_factors.py
-│   └── test_backtest.py
-├── configs/                    # Config files
-│   └── backtest.yaml
-├── README.md                   # Project overview
-├── requirements.txt            # Dependencies
-├── LICENSE                     # License info
-└── .gitignore                  # Ignore rules
-
+factor-investing-crypto/  
+├── data/                       # Cleaned CSVs  
+│   ├── prices_equities.csv  
+│   └── prices_crypto.csv  
+├── notebooks/                  # Jupyter notebooks  
+│   └── factor_construction.ipynb  
+├── src/                        # Core source code  
+│   ├── ingestion.py            # data loading & cleaning  
+│   ├── factors.py              # factor construction logic  
+│   ├── backtest.py             # backtesting engine  
+│   ├── portfolio.py            # portfolio weighting & rebalancing  
+│   ├── metrics.py              # performance metrics & attribution  
+│   └── dashboard_app.py        # optional Streamlit dashboard  
+├── scripts/                    # Utility scripts  
+│   ├── run_backtest.py  
+│   └── export_plots.py  
+├── outputs/                    # Model outputs  
+│   ├── plots/                  # Saved visuals  
+│   │   ├── factor_cumulative_returns.png  
+│   │   ├── factor_correlation_heatmap.png  
+│   │   ├── rolling_alpha.png  
+│   │   └── turnover_sensitivity.png  
+│   └── results/                # Backtest results  
+├── tests/                      # Unit tests  
+│   ├── test_factors.py  
+│   └── test_backtest.py  
+├── configs/                    # Config files  
+│   └── backtest.yaml  
+├── README.md                   # Project overview  
+├── requirements.txt            # Dependencies  
+├── LICENSE                     # License info  
+└── .gitignore                  # Ignore rules  
 
 ---
-
 ## 🖼 Key Visuals
-
-1. **Cumulative Factor Returns** – Value, Size, Momentum vs benchmarks  
-   *(outputs/plots/factor_cumulative_returns.png)*  
-
-2. **Factor Correlation Heatmap** – co-movement between factors and assets  
-   *(outputs/plots/factor_correlation_heatmap.png)*  
-
-3. **Rolling Alpha Attribution** – contribution of each factor over time  
-   *(outputs/plots/rolling_alpha.png)*  
-
-4. **Turnover Sensitivity** – transaction costs and slippage effects  
-   *(outputs/plots/turnover_sensitivity.png)*  
-
-*All saved in `/outputs/plots` as high-res PNGs and SVGs for LinkedIn and reports.*  
+1. **Cumulative Factor Returns** – Value, Size, Momentum vs benchmark *(outputs/plots/factor_cumulative_returns.png)*  
+2. **Factor Correlation Heatmap** – co-movement between factors and crypto assets *(outputs/plots/factor_correlation_heatmap.png)*  
+3. **Rolling Alpha Attribution** – factor contributions over time *(outputs/plots/rolling_alpha.png)*  
+4. **Turnover Sensitivity** – impact of transaction costs *(outputs/plots/turnover_sensitivity.png)*  
+*All plots saved in `/outputs/plots` as high-resolution PNGs for LinkedIn and reports.*  
 
 ---
 ## ⚡ How to Run Locally
@@ -133,4 +113,3 @@ Backtest Value + Size + Momentum from 2016 onward:
 ---
 ## 📜 License
 MIT License
-
