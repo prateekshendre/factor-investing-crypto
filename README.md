@@ -1,104 +1,76 @@
-# Repo: finance-ml-risk
-# Paste each "### FILE: <path>" section into the corresponding file.
+# 📈 Factor Investing with a Crypto Twist
 
-### FILE: README.md
-# 🤖 Machine Learning for Financial Risk
-
-End-to-end **credit default and counterparty risk modeling pipeline** with explainability and governance.  
-This repo contains a reproducible pipeline from ingestion through explainability and a minimal deployment path.
+Apply **Fama–French style factor investing** to equities and crypto.  
+Build Value, Size, and Momentum factors in Python, run backtests, and generate clear performance reports and plots for portfolio analysis.
 
 ---
 
-## 🚀 What this project does
+## 🚀 What This Project Does
 
-* Ingest raw loan or counterparty level data and produce cleaned feature sets  
-* Encode and scale variables using reproducible preprocessing pipelines  
-* Train logistic regression, random forest, and gradient boosting candidate models  
-* Validate performance with time-based splits and cross-validation  
-* Explain model behavior with SHAP for global and local interpretability  
-* Produce model cards and validation reports for governance
+* **Constructs** Value, Size, Momentum, and custom factors from equity and crypto data  
+* **Cleans & aligns** daily price series to ensure consistent timestamps and returns  
+* **Backtests** long-only and long-short factor portfolios with optional transaction cost assumptions  
+* **Produces** cumulative return plots, factor correlation matrices, turnover and attribution tables  
+* **Exports** publication-ready PNGs and CSVs for reports and dashboards  
 
 ---
 
 ## 📂 Data
 
-* Sample development datasets live in `data/examples/`  
-* Production data should be ingested via `src/ingestion.py` and stored securely in `data/feature_store/` or object storage  
-* Keep cleaned CSV or parquet snapshots under `data/` for reproducibility
+* **Sources:**  
+  * Equities – Yahoo Finance via `yfinance`  
+  * Crypto – Bitcoin (**BTC-USD**) and Ethereum (**ETH-USD**) via `yfinance` or exchange APIs  
+* **Frequency:** Daily closes  
+* **Storage:** Cleaned CSVs saved under `data/` for reproducibility  
 
 ---
 
-## 🛠 Methods & tools
+## 🛠 Methods & Tools
 
-* pandas, numpy for data pipelines  
-* scikit-learn for preprocessing and baseline models  
-* xgboost or lightgbm for boosted trees  
-* shap for explainability  
-* mlflow for experiment tracking (optional)  
-* pytest for unit tests  
-* Docker for packaging
+* **pandas** & **numpy** – data wrangling and factor construction  
+* **scikit-learn** – ranking, scaling, preprocessing  
+* **matplotlib** & **seaborn** – visualizations  
+* **backtrader** (or custom engine) – backtesting  
+* **streamlit** – optional dashboard for live signal viewing  
+* **pytest** – testing  
 
 ---
 
-## 📁 Repository layout
+## 📁 Repository Layout
 
-finance-ml-risk/
+factor-investing-crypto/
 │
-├── data/
-│   ├── examples/                 # sample CSVs for dev
-│   └── feature_store/            # cleaned, engineered features
+├── data/ # Cleaned CSVs
+│ ├── prices_equities.csv
+│ └── prices_crypto.csv
 │
-├── configs/
-│   └── train.yaml                # example training config
+├── notebooks/ # Exploratory notebooks
+│ └── factor_construction.ipynb
 │
-├── notebooks/
-│   └── eda_feature_engineering.ipynb
+├── src/ # Core source code
+│ ├── ingestion.py # data loading & cleaning
+│ ├── factors.py # factor construction
+│ ├── backtest.py # backtesting logic
+│ ├── portfolio.py # portfolio construction & weighting
+│ ├── metrics.py # performance metrics & attribution
+│ └── dashboard_app.py # Streamlit dashboard
 │
-├── src/
-│   ├── ingestion.py              # raw to cleaned
-│   ├── features.py               # feature engineering
-│   ├── pipeline.py               # sklearn pipeline for train/infer
-│   ├── train.py                  # training entry
-│   ├── evaluate.py               # evaluate and report
-│   ├── explainability.py         # SHAP reports
-│   └── predict.py                # inference entry
+├── scripts/ # CLI scripts
+│ ├── run_backtest.py
+│ └── export_plots.py
 │
-├── experiments/                  # mlflow or local experiments
 ├── outputs/
-│   ├── models/
-│   └── reports/
+│ ├── plots/ # saved plots (PNG/SVG)
+│ └── results/ # backtest results
 │
-├── reports/
-│   ├── model_card_template.md
-│   └── validation_report_template.md
+├── tests/ # Unit tests
+│ ├── test_factors.py
+│ └── test_backtest.py
 │
-├── scripts/
-│   └── run_training.sh
+├── configs/ # Config files
+│ └── backtest.yaml
 │
-├── tests/
-│   ├── test_pipeline.py
-│   └── test_features.py
-│
-├── .github/
-│   └── workflows/ci.yml
-│
-├── Dockerfile
 ├── requirements.txt
-├── .gitignore
 ├── README.md
-└── LICENSE
-
----
-
-## 🖼 Key outputs
-
-1. Performance metrics: ROC AUC, precision recall, calibration plots  
-2. SHAP explainability artifacts: summary and sample local explanations  
-3. Feature stability reports: PSI across time buckets  
-4. Model card and validation report suitable for governance
-
----
-
-## ⚡ How to run locally
-
-1. Clone repo
+├── LICENSE
+└── .gitignore
