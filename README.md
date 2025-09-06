@@ -80,13 +80,13 @@ factor-investing-crypto/
    ```bash
    git clone https://github.com/your-username/factor-investing-crypto.git  
    cd factor-investing-crypto
-  '''
+ 
 
 3. Create virtual environment
    ```bash
    python -m venv venv  
    source venv/bin/activate   # on Windows: venv\Scripts\activate
-  '''
+  
 
 4. Install dependencies
 
