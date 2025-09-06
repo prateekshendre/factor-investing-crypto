@@ -29,6 +29,8 @@ Build Value, Size, and Momentum factors in Python, run backtests, and generate p
 
 ---
 ## 📁 Repository Layout
+
+```
 factor-investing-crypto/  
 ├── data/                       # Cleaned CSVs  
 │   ├── prices_equities.csv  
@@ -61,6 +63,8 @@ factor-investing-crypto/
 ├── requirements.txt            # Dependencies  
 ├── LICENSE                     # License info  
 └── .gitignore                  # Ignore rules  
+
+```
 
 ---
 ## 🖼 Key Visuals
