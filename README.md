@@ -40,37 +40,42 @@ Build Value, Size, and Momentum factors in Python, run backtests, and generate c
 
 factor-investing-crypto/
 │
-├── data/ # Cleaned CSVs
-│ ├── prices_equities.csv
-│ └── prices_crypto.csv
+├── data/                       # Cleaned CSVs
+│   ├── prices_equities.csv
+│   └── prices_crypto.csv
 │
-├── notebooks/ # Exploratory notebooks
-│ └── factor_construction.ipynb
+├── notebooks/                  # Jupyter notebooks
+│   └── factor_construction.ipynb
 │
-├── src/ # Core source code
-│ ├── ingestion.py # data loading & cleaning
-│ ├── factors.py # factor construction
-│ ├── backtest.py # backtesting logic
-│ ├── portfolio.py # portfolio construction & weighting
-│ ├── metrics.py # performance metrics & attribution
-│ └── dashboard_app.py # Streamlit dashboard
+├── src/                        # Core source code
+│   ├── ingestion.py            # data loading & cleaning
+│   ├── factors.py              # factor construction logic
+│   ├── backtest.py             # backtesting engine
+│   ├── portfolio.py            # portfolio weighting & rebalancing
+│   ├── metrics.py              # performance metrics & attribution
+│   └── dashboard_app.py        # optional Streamlit dashboard
 │
-├── scripts/ # CLI scripts
-│ ├── run_backtest.py
-│ └── export_plots.py
+├── scripts/                    # Utility scripts
+│   ├── run_backtest.py
+│   └── export_plots.py
 │
-├── outputs/
-│ ├── plots/ # saved plots (PNG/SVG)
-│ └── results/ # backtest results
+├── outputs/                    # Model outputs
+│   ├── plots/                  # Saved PNG/SVG visuals
+│   │   ├── factor_cumulative_returns.png
+│   │   ├── factor_correlation_heatmap.png
+│   │   ├── rolling_alpha.png
+│   │   └── turnover_sensitivity.png
+│   └── results/                # Backtest results
 │
-├── tests/ # Unit tests
-│ ├── test_factors.py
-│ └── test_backtest.py
+├── tests/                      # Unit tests
+│   ├── test_factors.py
+│   └── test_backtest.py
 │
-├── configs/ # Config files
-│ └── backtest.yaml
+├── configs/                    # Config files
+│   └── backtest.yaml
 │
-├── requirements.txt
-├── README.md
-├── LICENSE
-└── .gitignore
+├── README.md                   # Project overview
+├── requirements.txt            # Dependencies
+├── LICENSE                     # License info
+└── .gitignore                  # Ignore rules
+
