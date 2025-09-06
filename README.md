@@ -72,5 +72,65 @@ factor-investing-crypto/
 └── .gitignore                  # Ignore rules
 
 
+---
 
+## 🖼 Key Visuals
+
+1. **Cumulative Factor Returns** – Value, Size, Momentum vs benchmarks  
+   *(outputs/plots/factor_cumulative_returns.png)*  
+
+2. **Factor Correlation Heatmap** – co-movement between factors and assets  
+   *(outputs/plots/factor_correlation_heatmap.png)*  
+
+3. **Rolling Alpha Attribution** – contribution of each factor over time  
+   *(outputs/plots/rolling_alpha.png)*  
+
+4. **Turnover Sensitivity** – transaction costs and slippage effects  
+   *(outputs/plots/turnover_sensitivity.png)*  
+
+*All saved in `/outputs/plots` as high-res PNGs and SVGs for LinkedIn and reports.*  
+
+---
+## ⚡ How to Run Locally
+1. Clone repo  
+   git clone https://github.com/your-username/factor-investing-crypto.git  
+   cd factor-investing-crypto  
+
+2. Create virtual environment  
+   python -m venv venv  
+   source venv/bin/activate   # on Windows: venv\Scripts\activate  
+
+3. Install dependencies  
+   pip install -r requirements.txt  
+
+4. Prepare data  
+   python src/ingestion.py --symbols configs/symbols.csv --out data/prices_equities.csv  
+   python src/ingestion.py --symbols configs/crypto_symbols.csv --out data/prices_crypto.csv  
+
+5. Run backtest  
+   python scripts/run_backtest.py --config configs/backtest.yaml  
+
+6. Export plots  
+   python scripts/export_plots.py --input outputs/results.pkl --out outputs/plots  
+
+7. Launch dashboard (optional)  
+   streamlit run src/dashboard_app.py  
+
+---
+## 📌 Example Command
+Backtest Value + Size + Momentum from 2016 onward:  
+   python src/backtest.py --start 2016-01-01 --end 2025-06-30 \  
+     --factors value,size,momentum \  
+     --out outputs/results.pkl  
+
+---
+## 🔮 Next Steps
+* Add **risk parity weighting** across factors  
+* Extend to **additional crypto assets** beyond BTC & ETH  
+* Add **rolling Sharpe ratios and volatility overlays**  
+* Integrate with **live data feeds** for daily signals  
+
+---
+## 📜 License
+MIT License
 
