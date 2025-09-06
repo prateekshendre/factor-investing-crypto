@@ -1,120 +1,116 @@
 # 📈 Factor Investing with a Crypto Twist
 
-Apply **Fama–French style factor investing** to both equities and crypto.  
-Build Value, Size, and Momentum factors, backtest them, and analyze diversification effects when adding Bitcoin and Ethereum to traditional equity portfolios.
+Apply Fama French style factor investing to equities and crypto.  
+Build Value Size Momentum factors in Python run backtests and produce clear performance reports and plots for portfolio analysis.
 
 ---
 
 ## 🚀 What This Project Does
 
-* **Constructs** Value, Size, and Momentum factors from equity and crypto data  
-* **Aligns & cleans** datasets for consistent backtesting  
-* **Backtests** long-only and long-short factor portfolios with performance attribution  
-* **Generates** cumulative returns, rolling exposures, and factor correlation plots  
-* **Exports** publication-ready plots and CSV files for reporting and dashboards  
+* **Constructs** Value Size Momentum and custom factors from equity and crypto data  
+* **Cleans and aligns** daily price series so backtests use consistent timestamps and returns  
+* **Backtests** long only and long short factor portfolios with simple transaction cost assumptions  
+* **Produces** cumulative performance plots factor correlation matrices turnover tables and attribution summaries  
+* **Exports** publication ready PNG and CSV files for reports and dashboards
 
 ---
 
 ## 📂 Data
 
-* **Sources:**  
-  * Equities – Yahoo Finance (`yfinance`)  
-  * Crypto – Bitcoin (**BTC-USD**) and Ethereum (**ETH-USD**)  
-
-* **Frequency:** Daily closes  
-* **Storage:** Clean CSVs are kept in `/data` for reproducibility  
+* **Sources**  
+  * Equities from `yfinance` or your vendor of choice  
+  * Crypto from `yfinance` or exchange APIs for BTC and ETH  
+* **Frequency** daily close prices only  
+* **Storage** cleaned CSVs live in `data` for reproducibility
 
 ---
 
-## 🛠 Methods & Tools
+## 🛠 Methods and Tools
 
-* **pandas & numpy** – factor construction and data wrangling  
-* **scikit-learn** – ranking, scaling, preprocessing  
-* **matplotlib & seaborn** – visualizations  
-* **backtrader** (or custom engine) – backtesting  
-* **streamlit** – optional interactive dashboard  
-* **Jupyter Notebook** – exploration and analysis  
+* **pandas** and **numpy** for data wrangling and factor maths  
+* **scikit learn** for ranking scaling and preprocessing utilities  
+* **matplotlib** and **seaborn** for visualizations  
+* **backtrader** or a small custom engine for backtests  
+* **streamlit** as an optional lightweight signal viewer  
+* **pytest** for unit tests
 
 ---
 
 ## 📁 Repository Layout
 
-finance-ml-risk/
-│
-├── data/
-│ ├── examples/ # sample CSVs
-│ └── feature_store/ # engineered features
-│
-├── notebooks/
-│ └── eda_feature_engineering.ipynb
-│
-├── src/
-│ ├── ingestion.py # raw to cleaned data
-│ ├── features.py # feature engineering
-│ ├── pipeline.py # preprocessing pipeline
-│ ├── train.py # training and persistence
-│ ├── evaluate.py # model validation
-│ ├── explainability.py # SHAP reports
-│ └── predict.py # inference
-│
-├── experiments/ # MLflow logs
-├── reports/
-│ ├── model_card_template.md
-│ └── validation_report_template.md
-│
-├── scripts/
-│ ├── run_training.sh
-│ └── generate_report.py
-│
-├── tests/
-│ ├── test_pipeline.py
-│ └── test_features.py
-│
-├── requirements.txt
-├── Dockerfile
-├── README.md
-├── LICENSE
-└── .gitignore
+factor-investing-crypto/  
+  data/  
+    prices_equities.csv  
+    prices_crypto.csv  
+  notebooks/  
+    factor_construction.ipynb  
+  src/  
+    ingestion.py       # load raw data write cleaned csv  
+    factors.py         # factor construction and ranking routines  
+    backtest.py        # backtest wrapper or engine adapter  
+    portfolio.py       # portfolio construction and rebalancing logic  
+    metrics.py         # performance metrics and tables  
+    dashboard_app.py   # optional streamlit app for live signals  
+  scripts/  
+    run_backtest.py  
+    export_plots.py  
+  outputs/  
+    plots/  
+    results/  
+  tests/  
+    test_factors.py  
+    test_backtest.py  
+  requirements.txt  
+  configs/  
+    backtest.yaml  
+  README.md  
+  LICENSE
 
 ---
 
 ## 🖼 Key Visuals
 
-1. **Cumulative Factor Returns** – Value, Size, Momentum vs benchmarks  
-   *(outputs/plots/factor_cumulative_returns.png)*  
+1. **Cumulative Factor Returns** Value Size Momentum vs benchmark  
+   *(outputs/plots/factor_cumulative_returns.png)*
 
-2. **Factor Correlation Heatmap** – co-movement between factors and crypto assets  
-   *(outputs/plots/factor_correlation_heatmap.png)*  
+2. **Factor Correlation Heatmap** shows co movement between factors and crypto  
+   *(outputs/plots/factor_correlation_heatmap.png)*
 
-3. **Rolling Alpha Attribution** – contribution of each factor over time  
-   *(outputs/plots/rolling_alpha.png)*  
+3. **Rolling Exposure and Attribution** contribution of each factor over time  
+   *(outputs/plots/rolling_attribution.png)*
 
-4. **Transaction Cost Sensitivity** – turnover and slippage effects  
-   *(outputs/plots/turnover_sensitivity.png)*  
+4. **Turnover and Transaction Cost Sensitivity** table and plot  
+   *(outputs/plots/turnover_sensitivity.png)*
 
-*All plots saved in `/outputs/plots` as high-resolution PNGs and SVGs for reports and LinkedIn.*
+All visuals are saved to `outputs/plots` as high resolution PNGs and SVGs for reports and social posts.
 
 ---
 
 ## ⚡ How to Run Locally
 
-1. Clone repo  
+1. Clone the repo
 
-   ```bash
-   git clone https://github.com/your-username/factor-investing-crypto.git
-   cd factor-investing-crypto
-Create virtual environment
+```bash
+git clone https://github.com/your-username/factor-investing-crypto.git
+cd factor-investing-crypto
+Create and activate a virtual environment
 
 bash
 Copy code
 python -m venv venv
-source venv/bin/activate   # or venv\Scripts\activate on Windows
+source venv/bin/activate   # on Windows use venv\Scripts\activate
 Install dependencies
 
 bash
 Copy code
 pip install -r requirements.txt
-Run backtest
+Fetch or place raw price files under data/raw then run ingestion
+
+bash
+Copy code
+python src/ingestion.py --symbols configs/symbols.csv --out data/prices_equities.csv
+python src/ingestion.py --symbols configs/crypto_symbols.csv --out data/prices_crypto.csv
+Run a backtest with the example config
 
 bash
 Copy code
@@ -124,25 +120,27 @@ Export plots
 bash
 Copy code
 python scripts/export_plots.py --input outputs/results.pkl --out outputs/plots
-(Optional) Launch dashboard
+Optional run live signal viewer
 
 bash
 Copy code
 streamlit run src/dashboard_app.py
-📌 Example Command
-Generate normalized factor performance:
+📌 Example backtest command
+Generate factor performance from 2016 to 2025
 
+bash
+Copy code
 python src/backtest.py --start 2016-01-01 --end 2025-06-30 \
   --factors value,size,momentum \
   --out outputs/results.pkl
 🔮 Next Steps
-Add risk parity weighting across factor exposures
+Add risk parity or volatility parity weighting across factors
 
-Extend to additional crypto assets beyond BTC and ETH
+Extend factor set to include quality and low volatility for equities and momentum variants for crypto
 
-Add rolling volatility & Sharpe ratio analysis
+Add rolling metrics like volatility Sharpe and information ratio
 
-Integrate with live data feed for daily signals
+Wire a light CI check that runs a very small sample backtest on push
 
 📜 License
 MIT License
